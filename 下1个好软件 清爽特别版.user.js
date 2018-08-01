@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         下1个好软件 清爽特别版
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  这货非常贱, 居然用了googleads的反ADBlock插件, 必须把这货加入ADBlock的白名单, 然后再配合我这个插件才行
 // @author       zhenhappy
 // @match        http://xia1ge.com/**
