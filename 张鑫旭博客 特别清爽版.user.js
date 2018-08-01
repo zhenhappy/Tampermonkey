@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         张鑫旭博客 特别清爽版
 // @namespace    https://greasyfork.org/zh-CN/scripts/370790
-// @version      0.1
+// @version      0.2
 // @description  去除张鑫旭博客上面各种广告, 并且将正文宽度调整到最适合观看的角度, 让你全身心的投入到阅读学习当中
 // @author       zhenhappy
 // @match        https://www.zhangxinxu.com/**
