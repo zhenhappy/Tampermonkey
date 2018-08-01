@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MSDN 我告诉你 清爽特别版
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @namespace    https://greasyfork.org/zh-CN/scripts/370788
+// @version      0.2
 // @description  MSDN 我告诉你 去除广告, 界面宽度100%(解决默写内容太长看不到的问题), 去除捐赠提示
 // @author       zhenhappy
 // @match        https://msdn.itellyou.cn/*
