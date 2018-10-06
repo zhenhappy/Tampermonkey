@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         MSDN 我告诉你 清爽特别版
 // @namespace    https://greasyfork.org/zh-CN/scripts/370789
-// @version      0.3
+// @version      0.4
 // @description  MSDN 我告诉你 去除广告, 界面宽度100%(解决默写内容太长看不到的问题), 去除捐赠提示
 // @author       zhenhappy
 // @match        http*://msdn.itellyou.cn/*
 // @require      https://code.jquery.com/jquery-3.3.1.slim.min.js
+// @require      https://raw.githubusercontent.com/zhenhappy/textarea/master/jquery-autoHeightTextarea.min.js
 // ==/UserScript==
 
 $(document).ready(() => {
@@ -29,11 +30,11 @@ $(document).ready(() => {
     if (current.attr('class') === 'detail' && current.children('pre').length > 0) {
       current.children('textarea').remove()
       const textarea = document.createElement('textarea')
+      textarea.minRows = '1'
       textarea.value = current.children('pre').text()
       textarea.style.width = '100%'
-      textarea.style.height = '42px'
-      textarea.style.fontSize = '13px'
-      textarea.style.lineHeight = '35px'
+      textarea.style.padding = '10px 10px'
+      textarea.style.fontSize = '14px'
       textarea.style.color = '#333'
       textarea.style.wordBreak = 'break-all'
       textarea.style.wordWrap = 'break-word'
@@ -44,10 +45,11 @@ $(document).ready(() => {
       textarea.style.resize = 'none'
       textarea.onclick = () => {
         textarea.select()
-        document.execCommand('copy')
-        console.log('复制成功')
+        document.execCommand("copy")
+        console.log("复制成功")
       }
       current.append(textarea)
+      $(textarea).autoHeightTextarea()
       current.children('pre').remove()
     }
   })
