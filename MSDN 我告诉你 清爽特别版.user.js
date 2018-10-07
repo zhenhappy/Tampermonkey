@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         MSDN 我告诉你 清爽特别版
 // @namespace    https://greasyfork.org/zh-CN/scripts/370789
-// @version      0.5
-// @description  MSDN 我告诉你 去除广告, 界面宽度100%(解决默写内容太长看不到的问题), 去除捐赠提示
+// @version      0.6
+// @description  MSDN 我告诉你 去除广告, 界面宽度100%(解决SideBar里面的内容太长看不到的问题), 去除捐赠提示, 点击链接自动复制, 禁用其他不必要的文本选择
 // @author       zhenhappy
 // @match        http*://msdn.itellyou.cn/*
 // @require      https://code.jquery.com/jquery-3.3.1.slim.min.js
