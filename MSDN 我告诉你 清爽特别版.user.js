@@ -1,13 +1,16 @@
 // ==UserScript==
 // @name         MSDN 我告诉你 清爽特别版
 // @namespace    https://greasyfork.org/zh-CN/scripts/370789
-// @version      0.7
+// @version      0.8
 // @description  MSDN 我告诉你 去除广告, 界面宽度100%(解决SideBar里面的内容太长看不到的问题), 去除捐赠提示
 // @author       zhenhappy
+// @run-at       document-start
 // @match        http*://msdn.itellyou.cn/*
 // @require      https://code.jquery.com/jquery-3.3.1.slim.min.js
 // @require      https://raw.githubusercontent.com/zhenhappy/textarea/master/jquery-autoHeightTextarea.min.js
 // ==/UserScript==
+
+document.documentElement.style.display = 'none'
 
 $(document).ready(() => {
   const userSelectStyle = {
@@ -57,4 +60,5 @@ $(document).ready(() => {
       }
     }
   })
+  document.documentElement.style.display = ''
 })
