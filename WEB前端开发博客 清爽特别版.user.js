@@ -6,7 +6,7 @@
 // @author       zhenhappy
 // @run-at       document-start
 // @match        http*://www.css88.com/*
-// @require      https://code.jquery.com/jquery-3.3.1.slim.min.js
+// @require      https://unpkg.com/jquery/dist/jquery.slim.min.js
 // ==/UserScript==
 
 document.documentElement.style.display = 'none'
