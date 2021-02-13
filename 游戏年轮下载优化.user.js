@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         游戏年轮下载优化
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @namespace    https://greasyfork.org/zh-CN/scripts/421664
+// @version      0.2
 // @description  游戏年轮自动对下载地址做超链接, 方便点击, 验证码和密码均支持点击复制到剪贴板, 遇到未评论的会自动评论
 // @author       You
 // @match        http*://www.bibgame.com/*
