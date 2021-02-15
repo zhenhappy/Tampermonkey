@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         张鑫旭博客 清爽特别版
 // @namespace    https://greasyfork.org/zh-CN/scripts/370790
-// @version      0.6
+// @version      0.7
+// @author       zhenhappy<q505507538@gmail.com>
 // @description  张鑫旭这小子上面广告各种动态生成, 相比一般的广告技术来说还是贼牛逼的, 一般的ADBlocker去不掉, 所以通过脚本一个个去掉了, 并且将正文宽度调整到最佳合观看的角度, 让你心无旁骛的投入到愉快学习当中
-// @author       zhenhappy
 // @run-at       document-start
 // @match        http*://www.zhangxinxu.com/**
 // @require      https://unpkg.com/jquery/dist/jquery.slim.min.js
