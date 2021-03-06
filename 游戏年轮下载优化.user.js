@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         游戏年轮下载优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/421664
-// @version      0.4
+// @version      0.5
 // @author       zhenhappy<q505507538@gmail.com>
 // @description  游戏年轮自动对下载地址做超链接, 方便点击, 验证码和密码均支持点击复制到剪贴板, 遇到未评论的会自动评论
 // @icon         https://www.bibgame.com/resources/img/favicon.ico
@@ -21,7 +21,7 @@
                         url = _url[1]
                         console.log('url:', url)
                         if (url) {
-                            $('#chakan p').eq(0).html('链接：<a style="border: none;text-decoration: underline;" href="' + url + '" target="_blank">' + url + '</a>')
+                            $('#chakan p').eq(0).html('链接：<a style="border: none;text-decoration: none;" href="' + url + '" target="_blank">' + url + '</a>')
                         }
                     }
                     _code = /提取码：(.+)/g.exec($(this).text())
@@ -29,7 +29,7 @@
                         code = _code[1]
                         console.log('code:', code)
                         if (code) {
-                            $('#chakan p').eq(0).html('链接：<a style="border: none" href="' + url + '#' + code + '" target="_blank">' + url + '</a>')
+                            $('#chakan p').eq(0).html('链接：<a style="border: none;text-decoration: none;" href="' + url + '#' + code + '" target="_blank">' + url + '</a>')
                             $(this).html('提取码：<span style="cursor: pointer;" id="code" data-clipboard-target="#code">'+code+'</span>')
                             new ClipboardJS('#code')
                         }
