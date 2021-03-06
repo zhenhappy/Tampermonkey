@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         游戏年轮下载优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/421664
-// @version      0.6
+// @version      0.7
 // @author       zhenhappy<q505507538@gmail.com>
 // @description  游戏年轮自动对下载地址做超链接, 方便点击, 验证码和密码均支持点击复制到剪贴板, 遇到未评论的会自动评论
 // @icon         https://www.bibgame.com/resources/img/favicon.ico
@@ -12,8 +12,47 @@
 
 (function() {
     var t = setInterval(function () {
-        if ($('.hd_top').html()) $('.hd_top').remove()
-        if ($('.ver_nav_con').html()) $('.ver_nav_con').remove()
+        if ($('.head_box').html()) {
+            if ($('header').html()) {
+                $('header > .hd_top, header > .nav_togg').remove()
+                $('header').css ({
+                    height: '80px'
+                })
+            }
+            if ($('.ver_nav').html()) {
+                $('.ver_nav').remove()
+            }
+        }
+        if ($('.main_body').html()) {
+            $('.main_body').css({
+                paddingLeft: '0'
+            })
+            if ($('.vg_main').html()) {
+                $('.vg_main').css({
+                    paddingTop: '80px'
+                })
+            }
+            if ($('.main_right').html()) {
+                $('.main_right').remove()
+            }
+            if ($('.main_left').html()) {
+                if ($('.listad').html()) $('.listad').remove()
+                $('.main_left').css({
+                    width: '100%',
+                    margin: '0 auto',
+                    maxWidth: 'unset'
+                })
+                $('.main_left > .bread_crumb_nav').css({
+                    width: '100%'
+                })
+                $('.main_left > .article').css({
+                    width: '100%'
+                })
+                $('.front_content iframe').css({
+                    maxWidth: '700px'
+                })
+            }
+        }
         if ($('#chakan').html() && $('#pl-520am-f-saytext')) {
             try {
                 var _url, url, _code, code, _password, password
