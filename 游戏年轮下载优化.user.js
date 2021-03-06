@@ -100,7 +100,15 @@
                         width: '100%'
                     })
                     $('.front_content iframe').css({
+                        display: 'block',
+                        margin: '0 auto',
                         maxWidth: '700px'
+                    })
+                    $('.topicContent table td').css({
+                        background: 'none'
+                    })
+                    $('.topicContent table td a').css({
+                        border: 'none'
                     })
                 }
             } else throw(Error('未找到元素'))
