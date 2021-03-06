@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         游戏年轮下载优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/421664
-// @version      0.8
+// @version      0.9
 // @author       zhenhappy<q505507538@gmail.com>
 // @description  游戏年轮自动对下载地址做超链接, 方便点击, 验证码和密码均支持点击复制到剪贴板, 遇到未评论的会自动评论
 // @icon         https://www.bibgame.com/resources/img/favicon.ico
@@ -11,6 +11,7 @@
 // ==/UserScript==
 
 (function() {
+    console.log('游戏年轮下载优化>>>>>>>>')
     var t = setInterval(function () {
         try {
             if ($('#chakan').html() && $('#pl-520am-f-saytext')) {
@@ -50,7 +51,7 @@
                         window.location.reload()
                     }
                 })
-            }
+            } else throw(Error('未找到元素'))
             if ($('.head_box').html()) {
                 if ($('header').html()) {
                     $('header > .hd_top, header > .nav_togg').remove()
@@ -61,7 +62,7 @@
                 if ($('.ver_nav').html()) {
                     $('.ver_nav').remove()
                 }
-            }
+            } else throw(Error('未找到元素'))
             if ($('.main_body').html()) {
                 $('.main_body').css({
                     paddingLeft: '0'
@@ -91,20 +92,20 @@
                         maxWidth: '700px'
                     })
                 }
-            }
+            } else throw(Error('未找到元素'))
             if ($('footer').html()) {
                 $('footer').remove()
-            }
+            } else throw(Error('未找到元素'))
             if ($('.topicContent > script').length > 0) {
                 $('.topicContent > script').eq(0).nextAll().remove()
-            }
+            } else throw(Error('未找到元素'))
             if ($('.fot_box').html()) {
                 $('.fot_box').remove()
-            }
-        } catch (e) {
-            console.error(e)
-        } finally {
+            } else throw(Error('未找到元素'))
             clearInterval(t)
+            console.log('<<<<<<<<游戏年轮下载优化')
+        } catch (e) {
+            if ((e.message !== '未找到元素')) console.error('游戏年轮下载优化出错', e)
         }
     }, 500)
 })()
