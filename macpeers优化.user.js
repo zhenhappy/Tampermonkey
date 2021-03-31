@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         macpeers优化
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @namespace    https://greasyfork.org/zh-CN/scripts/424268
+// @version      0.2
 // @description  macpeers自动对下载地址做超链接, 方便点击, 验证码和密码均支持点击复制到剪贴板
 // @author       zhenhappy<q505507538@gmail.com>
 // @icon         https://hkmacpeers-1259420093.file.myqcloud.com/favicon.ico
