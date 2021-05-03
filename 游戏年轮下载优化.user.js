@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         游戏年轮下载优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/421664
-// @version      1.0
+// @version      1.1
 // @author       zhenhappy<q505507538@gmail.com>
 // @description  游戏年轮自动对下载地址做超链接, 方便点击, 验证码和密码均支持点击复制到剪贴板, 遇到未评论的会自动评论
 // @icon         https://www.bibgame.com/resources/img/favicon.ico
@@ -47,7 +47,7 @@
                             $('#chakan p').eq(0).html('链接：<a style="border: none;text-decoration: none;" href="' + url + '" target="_blank">' + url + '</a>')
                         }
                     }
-                    _code = /提取码：(.+)/g.exec($(this).text())
+                    _code = /提取码.*([A-Za-z0-9]{4})/g.exec($(this).text())
                     if (_code && _code.length > 1) {
                         code = _code[1]
                         console.log('code:', code)
