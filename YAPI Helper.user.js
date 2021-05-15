@@ -12,29 +12,33 @@
 (function() {
     var title = null
     var table = null
-    var t = setInterval(function () {
-        try {
-            // 查找"返回数据"节点
-            if ($('.interface-title') && $('.interface-title').length > 0) {
-                $.each($('.interface-title'), function () {
-                    if ($(this).text() === '返回数据') {
-                        console.log('找到: "' + $(this).text() + '"')
-                        title = $(this)
-                        table = $(this).next().find('table')
-                        expandAll(copy)
+    var url = ''
+    init()
+    function init () {
+        var t = setInterval(function () {
+            if (url !== window.location.href) {
+                try {
+                    // 查找"返回数据"节点
+                    if ($('.interface-title') && $('.interface-title').length > 0) {
+                        $.each($('.interface-title'), function () {
+                            if ($(this).text() === '返回数据') {
+                                console.log('找到: "' + $(this).text() + '"')
+                                title = $(this)
+                                table = $(this).next().find('table')
+                                expandAll(copy)
+                            }
+                        })
+                    } else {
+                        throw(Error('未找到元素'))
                     }
-                })
-            } else {
-                throw(Error('未找到元素'))
+                } catch (e) {
+                    if ((e.message !== '未找到元素')) console.error(e)
+                }
             }
-            clearInterval(t)
-        } catch (e) {
-            if ((e.message !== '未找到元素')) console.error(e)
-        }
-    }, 500)
-
+        }, 500)
+    }
     function addCopyBtn (text) {
-        title.append(' <a id="copy" href="#" data-clipboard-text=\''+ text +'\'>复制为interface</a>');
+        title.append(' <a id="copy" href="#" data-clipboard-text="'+ text +'">复制为interface</a>');
         new ClipboardJS('#copy')
     }
     function copy () {
