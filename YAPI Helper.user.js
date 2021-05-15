@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YAPI Helper
 // @namespace    https://greasyfork.org/zh-CN/scripts/426512
-// @version      0.1
+// @version      0.3
 // @description  将YAPI的接口返回数据结构复制为typescript的interface类型
 // @author       zhenhappy<q505507538@gmail.com>
 // @match        http://gate.97kid.com:8004/*
