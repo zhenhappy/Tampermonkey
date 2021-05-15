@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YAPI Helper
 // @namespace    https://greasyfork.org/zh-CN/scripts/426512
-// @version      0.2
+// @version      0.1
 // @description  将YAPI的接口返回数据结构复制为typescript的interface类型
 // @author       zhenhappy<q505507538@gmail.com>
 // @match        http://gate.97kid.com:8004/*
@@ -13,6 +13,7 @@
     var title = null
     var table = null
     var url = ''
+    var clipboard = null
     init()
     function init () {
         setInterval(function () {
@@ -50,8 +51,9 @@
         $(copy).attr('href', '#')
         $(copy).attr('data-clipboard-text', text)
         $(copy).text('复制数据结构')
-        title.append($(copy));
-        new ClipboardJS(copy)
+        title.append('&nbsp;&nbsp;').append($(copy));
+        if (clipboard) clipboard.destroy()
+        clipboard = new ClipboardJS(copy)
     }
     function copy () {
         var obj = {}
