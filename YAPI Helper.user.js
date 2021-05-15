@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YAPI Helper
 // @namespace    https://greasyfork.org/zh-CN/scripts/426512
-// @version      0.1
+// @version      0.2
 // @description  将YAPI的接口返回数据结构复制为typescript的interface类型
 // @author       zhenhappy<q505507538@gmail.com>
 // @match        http://gate.97kid.com:8004/*
@@ -15,31 +15,43 @@
     var url = ''
     init()
     function init () {
-        var t = setInterval(function () {
+        setInterval(function () {
             if (url !== window.location.href) {
-                try {
-                    // 查找"返回数据"节点
-                    if ($('.interface-title') && $('.interface-title').length > 0) {
-                        $.each($('.interface-title'), function () {
-                            if ($(this).text() === '返回数据') {
-                                console.log('找到: "' + $(this).text() + '"')
-                                title = $(this)
-                                table = $(this).next().find('table')
-                                expandAll(copy)
-                            }
-                        })
-                    } else {
-                        throw(Error('未找到元素'))
+                url = window.location.href
+                title = null
+                table = null
+                var t = setInterval(function () {
+                    try {
+                        // 查找"返回数据"节点
+                        if ($('.interface-title') && $('.interface-title').length > 0) {
+                            $.each($('.interface-title'), function () {
+                                if ($(this).text().search('返回数据') > -1) {
+                                    $(this).html('返回数据')
+                                    title = $(this)
+                                    table = $(this).next().find('table')
+                                    expandAll(copy)
+                                }
+                            })
+                        } else {
+                            throw(Error('未找到元素'))
+                        }
+                        clearInterval(t)
+                    } catch (e) {
+                        if ((e.message !== '未找到元素')) console.error(e)
                     }
-                } catch (e) {
-                    if ((e.message !== '未找到元素')) console.error(e)
-                }
+                }, 100)
             }
         }, 500)
     }
     function addCopyBtn (text) {
-        title.append(' <a id="copy" href="#" data-clipboard-text="'+ text +'">复制为interface</a>');
-        new ClipboardJS('#copy')
+        var copy = document.createElement('a')
+        copy.id = 'copy'
+        $(copy).attr('id', 'copy')
+        $(copy).attr('href', '#')
+        $(copy).attr('data-clipboard-text', text)
+        $(copy).text('复制数据结构')
+        title.append($(copy));
+        new ClipboardJS(copy)
     }
     function copy () {
         var obj = {}
