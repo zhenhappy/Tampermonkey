@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         游戏年轮下载优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/421664
-// @version      1.1
+// @version      1.2
 // @author       zhenhappy<q505507538@gmail.com>
 // @description  游戏年轮自动对下载地址做超链接, 方便点击, 验证码和密码均支持点击复制到剪贴板, 遇到未评论的会自动评论
 // @icon         https://www.bibgame.com/resources/img/favicon.ico
@@ -37,33 +37,40 @@
                 }
             } else throw(Error('未找到元素'))
             if ($('#chakan').html() && $('#pl-520am-f-saytext')) {
-                var _url, url, _code, code, _password, password
+                var _url, url, isBaidu, _code, code, _password, password
                 $.each($('#chakan p'), function( index, value ) {
+                    console.log($(this).text())
                     _url = /(http.*?)\s/g.exec($(this).text())
-                    if (_url && _url.length > 1) {
-                        url = _url[1]
-                        console.log('url:', url)
-                        if (url) {
-                            $('#chakan p').eq(0).html('链接：<a style="border: none;text-decoration: none;" href="' + url + '" target="_blank">' + url + '</a>')
-                        }
-                    }
+                    console.log('_url: ', _url)
+                    isBaidu = /pan\.baidu\.com/.test($(this).text())
                     _code = /提取码.*([A-Za-z0-9]{4})/g.exec($(this).text())
-                    if (_code && _code.length > 1) {
-                        code = _code[1]
-                        console.log('code:', code)
-                        if (code) {
-                            $('#chakan p').eq(0).html('链接：<a style="border: none;text-decoration: none;" href="' + url + '#' + code + '" target="_blank">' + url + '</a>')
-                            $(this).html('提取码：<span style="cursor: pointer;" id="code" data-clipboard-target="#code">'+code+'</span>')
-                            new ClipboardJS('#code')
-                        }
-                    }
+                    console.log('_code: ', _code)
                     _password = /解压密码：(.+)/g.exec($(this).text())
-                    if (_password && _password.length > 1) {
-                        password = _password[1]
-                        console.log('password:', password)
-                        if (password) {
-                            $(this).html('解压密码：<span style="cursor: pointer;" id="password" data-clipboard-target="#password">'+password+'</span>')
-                            new ClipboardJS('#password')
+                    console.log('_password: ', _password)
+                    if (isBaidu) {
+                        if (_url && _url.length > 1) {
+                            url = _url[1]
+                            console.log('url:', url)
+                            if (url) {
+                                $('#chakan p').eq(0).html('链接：<a style="border: none;text-decoration: none;" href="' + url + '" target="_blank">' + url + '</a>')
+                            }
+                        }
+                        if (_code && _code.length > 1) {
+                            code = _code[1]
+                            console.log('code:', code)
+                            if (code) {
+                                $('#chakan p').eq(0).html('链接：<a style="border: none;text-decoration: none;" href="' + url + '#' + code + '" target="_blank">' + url + '</a> 提取码：<span style="cursor: pointer;" id="code" data-clipboard-target="#code">'+code+'</span>')
+                                //$(this).html('提取码：<span style="cursor: pointer;" id="code" data-clipboard-target="#code">'+code+'</span>')
+                                new ClipboardJS('#code')
+                            }
+                        }
+                        if (_password && _password.length > 1) {
+                            password = _password[1]
+                            console.log('password:', password)
+                            if (password) {
+                                $(this).html('解压密码：<span style="cursor: pointer;" id="password" data-clipboard-target="#password">'+password+'</span>')
+                                new ClipboardJS('#password')
+                            }
                         }
                     }
                     if (/发表评论后/g.test($(this).text())) {
