@@ -8,3 +8,4 @@
 - MDN 自动切换中文：https://greasyfork.org/zh-CN/scripts/421190
 - 游戏年轮下载优化：https://greasyfork.org/zh-CN/scripts/421664
 - macpeers下载优化：https://greasyfork.org/zh-CN/scripts/424268
+- 百度网盘样式优化：https://greasyfork.org/zh-CN/scripts/433769
