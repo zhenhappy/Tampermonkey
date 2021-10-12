@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         百度网盘样式优化
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
+// @namespace    https://greasyfork.org/zh-CN/scripts/433769
+// @version      0.2
+// @description  解决百度网盘页面文件名称显示不完整
 // @author       You
 // @match        https://pan.baidu.com/s/*
 // @icon         https://pan.baidu.com/m-static/base/static/images/favicon.ico
 // @grant        none
 // ==/UserScript==
-
+ 
 (function() {
     document.querySelector('#layoutMain').style.minWidth = '1920px'
     document.querySelector('#layoutMain > div.frame-content > div.module-share-header > div > div.slide-show-left > h2').addEventListener('DOMSubtreeModified', function () {
