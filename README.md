@@ -9,3 +9,4 @@
 - 游戏年轮下载优化：https://greasyfork.org/zh-CN/scripts/421664
 - macpeers下载优化：https://greasyfork.org/zh-CN/scripts/424268
 - 百度网盘样式优化：https://greasyfork.org/zh-CN/scripts/433769
+- SoBooks 自动跳转：https://greasyfork.org/zh-CN/scripts/434291
