@@ -10,6 +10,7 @@
 // ==/UserScript==
 
 (function() {
+    $('.module-header').css('overflow', 'hidden')
     $('.slide-show-left').css('float', 'unset')
     $('.slide-show-left .file-name').css('max-width', 'unset')
     // document.querySelector('#layoutMain').style.minWidth = '1280px'
