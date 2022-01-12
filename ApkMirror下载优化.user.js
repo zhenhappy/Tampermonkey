@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name          ApkMirror下载优化
-// @namespace  http://tampermonkey.net/
+// @namespace  https://greasyfork.org/zh-CN/scripts/438409
 // @version        0.1
 // @description  ApkMirror 无视AdBlock检测，直接进入下载页
 // @author         zhenhappy<q505507538@gmail.com>
