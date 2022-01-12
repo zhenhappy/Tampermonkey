@@ -1,14 +1,15 @@
 // ==UserScript==
-// @name         MSDN 我告诉你 清爽特别版
-// @namespace    https://greasyfork.org/zh-CN/scripts/370789
-// @version      0.12
-// @author       zhenhappy<q505507538@gmail.com>
+// @name          MSDN 我告诉你 清爽特别版
+// @namespace  https://greasyfork.org/zh-CN/scripts/370789
+// @version        0.12
+// @author         zhenhappy<q505507538@gmail.com>
 // @description  MSDN 我告诉你 去除广告, 界面宽度100%(解决SideBar里面的内容太长看不到的问题), 去除捐赠提示
-// @icon         https://msdn.itellyou.cn/favicon.ico
-// @match        http*://msdn.itellyou.cn/*
-// @require      https://unpkg.com/jquery/dist/jquery.slim.min.js
-// @require      https://unpkg.com/autosize/dist/autosize.min.js
-// @run-at       document-start
+// @icon            https://msdn.itellyou.cn/favicon.ico
+// @match         http*://msdn.itellyou.cn/*
+// @require        https://unpkg.com/jquery/dist/jquery.slim.min.js
+// @require        https://unpkg.com/autosize/dist/autosize.min.js
+// @run-at         document-start
+// @license        MIT
 // ==/UserScript==
 
 document.documentElement.style.display = 'none'

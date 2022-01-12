@@ -7,6 +7,7 @@
 // @match        https://pan.baidu.com/s/*
 // @icon         https://pan.baidu.com/m-static/base/static/images/favicon.ico
 // @grant        none
+// @license        MIT
 // ==/UserScript==
 
 (function() {
