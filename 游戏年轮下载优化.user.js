@@ -1,14 +1,13 @@
 // ==UserScript==
-// @name          游戏年轮下载优化
-// @namespace  https://greasyfork.org/zh-CN/scripts/421664
-// @version       1.2
-// @author        zhenhappy<q505507538@gmail.com>
+// @name         游戏年轮下载优化
+// @namespace    https://greasyfork.org/zh-CN/scripts/421664
+// @version      1.3
+// @author       zhenhappy<q505507538@gmail.com>
 // @description  游戏年轮自动对下载地址做超链接, 方便点击, 验证码和密码均支持点击复制到剪贴板, 遇到未评论的会自动评论
-// @icon           https://www.bibgame.com/resources/img/favicon.ico
+// @icon         https://www.bibgame.com/resources/img/favicon.ico
 // @match        http*://www.bibgame.com/*
-// @require       https://unpkg.com/jquery/dist/jquery.slim.min.js
-// @require       https://unpkg.com/clipboard/dist/clipboard.min.js
-// @license       MIT
+// @require      https://unpkg.com/jquery/dist/jquery.slim.min.js
+// @require      https://unpkg.com/clipboard/dist/clipboard.min.js
 // ==/UserScript==
 
 (function() {
@@ -41,7 +40,7 @@
                 var _url, url, isBaidu, _code, code, _password, password
                 $.each($('#chakan p'), function( index, value ) {
                     console.log($(this).text())
-                    _url = /(http.*?)\s/g.exec($(this).text())
+                    _url = /(pan\.baidu\.com.*?)\s/g.exec($(this).text())
                     console.log('_url: ', _url)
                     isBaidu = /pan\.baidu\.com/.test($(this).text())
                     _code = /提取码.*([A-Za-z0-9]{4})/g.exec($(this).text())
@@ -50,7 +49,7 @@
                     console.log('_password: ', _password)
                     if (isBaidu) {
                         if (_url && _url.length > 1) {
-                            url = _url[1]
+                            url = 'https://' + _url[1]
                             console.log('url:', url)
                             if (url) {
                                 $('#chakan p').eq(0).html('链接：<a style="border: none;text-decoration: none;" href="' + url + '" target="_blank">' + url + '</a>')
