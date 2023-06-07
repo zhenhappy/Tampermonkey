@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         游戏年轮下载优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/421664
-// @version      1.3
+// @version      1.4
 // @author       zhenhappy<q505507538@gmail.com>
 // @description  游戏年轮自动对下载地址做超链接, 方便点击, 验证码和密码均支持点击复制到剪贴板, 遇到未评论的会自动评论
-// @icon         https://www.bibgame.com/resources/img/favicon.ico
-// @match        http*://www.bibgame.com/*
+// @icon         https://www.2023game.com/resources/img/favicon.ico
+// @match        http*://www.2023game.com/*
 // @require      https://unpkg.com/jquery/dist/jquery.slim.min.js
 // @require      https://unpkg.com/clipboard/dist/clipboard.min.js
 // ==/UserScript==
