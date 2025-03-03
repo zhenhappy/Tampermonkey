@@ -33,8 +33,8 @@ function waitForElm(selector) {
 }
 
 $(document).ready(async function () {
-    const success = await waitForElm('.alert-success')
-    if (!success) {
+    const warning = await waitForElm('.alert-warning')
+    if (warning) {
         const message = await waitForElm('#message')
         if (message) {
             message.val('谢谢分享')
