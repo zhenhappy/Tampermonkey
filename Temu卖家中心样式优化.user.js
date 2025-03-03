@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name         Temu卖家中心样式优化
-// @namespace    
-// @version      0.1
+// @namespace    https://greasyfork.org/zh-CN/scripts/528600
+// @version      0.2
+// @license      MIT
 // @description  优化Temu"卖家中心->备货单管理->发货单列表"每次打开都会弹窗的烦人问题
 // @author       zhenhappy<q505507538@gmail.com>
 // @match        https://seller.kuajingmaihuo.com/main/order-manager/shipping-list
