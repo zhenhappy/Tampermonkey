@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Temu卖家中心样式优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/528600
-// @version      0.2
+// @version      0.3
 // @license      MIT
 // @description  优化Temu"卖家中心->备货单管理->发货单列表"每次打开都会弹窗的烦人问题
 // @author       zhenhappy<q505507538@gmail.com>
@@ -21,8 +21,13 @@
     const checkAndRemoveTooltip = () => {
         const tooltip = $('.PT_tooltip_5-111-0');
         if (tooltip.length > 0) {
-            tooltip.remove();
-            console.log('成功移除弹窗元素');
+            tooltip.css({
+                'display': 'none',
+                'visibility': 'hidden',
+                'opacity': '0',
+                'pointer-events': 'none'
+            });
+            console.log('成功隐藏弹窗元素');
             return true;
         }
         return false;
