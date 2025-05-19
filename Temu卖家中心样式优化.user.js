@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Temu卖家中心样式优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/528600
-// @version      0.7
+// @version      0.8
 // @license      MIT
-// @description  1. 移除"发货单列表"每次打开都提示“请勾选发货单后点击发货，否则仓库无法收货”的烦人弹窗。 2. 如果用浏览器记住账号密码，进入登录页面的时候会自动勾选同意条款，但是不会自动登录（浏览器安全机制决定的），但是点击空白位置即可自动登录。
+// @description  1. 移除"发货单列表"每次打开都提示"请勾选发货单后点击发货，否则仓库无法收货"的烦人弹窗。 2. 如果用浏览器记住账号密码，进入登录页面的时候会自动勾选同意条款，但是不会自动登录（浏览器安全机制决定的），但是点击空白位置即可自动登录。
 // @author       zhenhappy<q505507538@gmail.com>
 // @include      https://seller.kuajingmaihuo.com/*
 // @icon         https://bstatic.cdnfe.com/static/files/sc/favicon.ico
@@ -78,6 +78,23 @@ $(document).ready(function() {
                     console.log('监听usernameId变化失败');
                 }
             }
+        },
+        {
+            name: 'Esc关闭弹窗',
+            match: '__ESC_KEY__',
+            task: async function() {
+                try {
+                    const closeBtn = await waitForElement('[data-testid="beast-core-modal-icon-close"], [data-testid="beast-core-icon-close"]', 500);
+                    if (typeof closeBtn[0].click === 'function') {
+                        closeBtn[0].click();
+                    } else {
+                        closeBtn[0].dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+                    }
+                    console.log('[Temu脚本] 按下Esc，已关闭弹窗');
+                } catch (e) {
+                    console.log('[Temu脚本] 按下Esc，未找到可关闭的弹窗按钮');
+                }
+            }
         }
         // 以后可继续添加其他页面任务
     ];
@@ -85,6 +102,7 @@ $(document).ready(function() {
     // 页面加载时立即执行
     runTaskForCurrentPath();
     listenUrlChange();
+    setupGlobalKeyListener();
 
     // 任务调度函数
     async function runTaskForCurrentPath() {
@@ -124,6 +142,7 @@ $(document).ready(function() {
     function waitForElement(selector, timeout = 500) {
         const { promise, resolve, reject } = Promise.withResolvers();
         const el = $(selector);
+        debugger
         if (el.length !== 0) {
             resolve(el);
             return promise;
@@ -140,5 +159,18 @@ $(document).ready(function() {
             }
         }, 10);
         return promise;
+    }
+
+    // 封装全局键盘监听事件
+    function setupGlobalKeyListener() {
+        $(document).on('keydown', function(e) {
+            if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+                // 查找任务映射表中名为 'Esc关闭弹窗' 的任务并执行
+                const escTask = taskMap.find(t => t.name === 'Esc关闭弹窗');
+                if (escTask && typeof escTask.task === 'function') {
+                    escTask.task();
+                }
+            }
+        });
     }
 });
