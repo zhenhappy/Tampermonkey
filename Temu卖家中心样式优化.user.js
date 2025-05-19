@@ -3,7 +3,7 @@
 // @namespace    https://greasyfork.org/zh-CN/scripts/528600
 // @version      0.8
 // @license      MIT
-// @description  1. 移除"发货单列表"每次打开都提示"请勾选发货单后点击发货，否则仓库无法收货"的烦人弹窗。 2. 如果用浏览器记住账号密码，进入登录页面的时候会自动勾选同意条款，但是不会自动登录（浏览器安全机制决定的），但是点击空白位置即可自动登录。
+// @description  1. 移除"发货单列表"每次打开都提示"请勾选发货单后点击发货，否则仓库无法收货"的烦人弹窗。 2. 如果用浏览器记住账号密码，进入登录页面的时候会自动勾选同意条款，但是不会自动登录（浏览器安全机制决定的），但是点击空白位置即可自动登录。3. 增加了全局快捷键，按下Esc键即可关闭弹窗。
 // @author       zhenhappy<q505507538@gmail.com>
 // @include      https://seller.kuajingmaihuo.com/*
 // @icon         https://bstatic.cdnfe.com/static/files/sc/favicon.ico
