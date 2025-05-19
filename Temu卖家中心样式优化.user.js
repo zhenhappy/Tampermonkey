@@ -142,7 +142,6 @@ $(document).ready(function() {
     function waitForElement(selector, timeout = 500) {
         const { promise, resolve, reject } = Promise.withResolvers();
         const el = $(selector);
-        debugger
         if (el.length !== 0) {
             resolve(el);
             return promise;
