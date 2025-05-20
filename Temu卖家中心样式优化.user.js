@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Temu卖家中心样式优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/528600
-// @version      0.8
+// @version      0.9
 // @license      MIT
 // @description  1. 移除"发货单列表"每次打开都提示"请勾选发货单后点击发货，否则仓库无法收货"的烦人弹窗。 2. 如果用浏览器记住账号密码，进入登录页面的时候会自动勾选同意条款，但是不会自动登录（浏览器安全机制决定的），但是点击空白位置即可自动登录。3. 增加了全局快捷键，按下Esc键即可关闭弹窗。
 // @author       zhenhappy<q505507538@gmail.com>
@@ -85,10 +85,11 @@ $(document).ready(function() {
             task: async function() {
                 try {
                     const closeBtn = await waitForElement('[data-testid="beast-core-modal-icon-close"], [data-testid="beast-core-icon-close"]', 500);
-                    if (typeof closeBtn[0].click === 'function') {
-                        closeBtn[0].click();
+                    const lastCloseBtn = closeBtn[closeBtn.length - 1];
+                    if (typeof lastCloseBtn.click === 'function') {
+                        lastCloseBtn.click();
                     } else {
-                        closeBtn[0].dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+                        lastCloseBtn.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
                     }
                     console.log('[Temu脚本] 按下Esc，已关闭弹窗');
                 } catch (e) {
