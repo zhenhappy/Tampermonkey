@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Temu卖家中心样式优化
 // @namespace    https://greasyfork.org/zh-CN/scripts/528600
-// @version      0.9
+// @version      0.10
 // @license      MIT
 // @description  1. 移除"发货单列表"每次打开都提示"请勾选发货单后点击发货，否则仓库无法收货"的烦人弹窗。 2. 如果用浏览器记住账号密码，进入登录页面的时候会自动勾选同意条款，但是不会自动登录（浏览器安全机制决定的），但是点击空白位置即可自动登录。3. 增加了全局快捷键，按下Esc键即可关闭弹窗。
 // @author       zhenhappy<q505507538@gmail.com>
@@ -26,7 +26,7 @@ $(document).ready(function() {
             match: /^\/main\/order-manager\/shipping-list/,
             task: async function() {
                 try {
-                    const tooltip = await waitForElement('.PT_tooltip_5-111-0', 2000);
+                    const tooltip = await waitForElement('.PT_tooltip_5-117-0', 2000);
                     tooltip.css({
                         'display': 'none',
                         'visibility': 'hidden',
@@ -94,6 +94,27 @@ $(document).ready(function() {
                     console.log('[Temu脚本] 按下Esc，已关闭弹窗');
                 } catch (e) {
                     console.log('[Temu脚本] 按下Esc，未找到可关闭的弹窗按钮');
+                }
+            }
+        },
+        {
+            name: '自动点击销售管理页面机会商品的我知道了的按钮',
+            match: /^\/main\/sale-manage\/main$/,
+            task: async function() {
+                try {
+                    const btn = await waitForElement('[data-tracking-id="4A5uYH-CuXtR4k69"]', 1000);
+                    if (btn.length > 0) {
+                        if (typeof btn[0].click === 'function') {
+                            btn[0].click();
+                        } else {
+                            btn[0].dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+                        }
+                        console.log('[Temu脚本] 已自动点击销售管理页面机会商品弹窗的“我知道了”的按钮');
+                    } else {
+                        console.log('[Temu脚本] 未找到销售管理页面机会商品弹窗的“我知道了”的按钮');
+                    }
+                } catch (e) {
+                    console.log('[Temu脚本] 未找到销售管理页面机会商品弹窗的“我知道了”的按钮');
                 }
             }
         }
