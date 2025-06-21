@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         音乐磁场自动回复隐藏帖
 // @namespace    https://greasyfork.org/zh-CN/scripts/507531
-// @version      2024-12-18
+// @version      1.0
 // @description  自动回复音乐磁场论坛上的隐藏帖
 // @author       zhenhappy<q505507538@gmail.com>
 // @match        https://www.hifini.com/thread-*.htm
@@ -43,4 +43,33 @@ $(document).ready(async function () {
             }, 500)
         }
     }
+
+    let pwd = ''
+    const success = await waitForElm('.alert-success')
+    if (success) {
+        pwd = success.first().text().trim()
+    }
+
+    let href = ''
+    let newHref = ''
+    if (pwd) {
+        href = $('p > a').first().attr('href')
+        if (href && href.includes('pan.baidu.com')) {
+            newHref = href.includes('?') ? `${href}&pwd=${pwd}` : `${href}?pwd=${pwd}`
+        }
+    }
+
+    $('h5').each(function () {
+        const h5 = $(this)
+        const text = h5.text().trim()
+        if (text === '下载') {
+            h5.next().remove()
+            h5.remove()
+        }
+        else if (text === '提取码') {
+            h5.text('百度网盘')
+            const newContent = `链接: <a href="${newHref}" target="_blank">${newHref}</a> 提取码: ${pwd}`
+            h5.next().next().html(newContent)
+        }
+    })
 })
