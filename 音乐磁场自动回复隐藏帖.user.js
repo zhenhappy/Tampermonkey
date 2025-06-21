@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         音乐磁场自动回复隐藏帖
 // @namespace    https://greasyfork.org/zh-CN/scripts/507531
-// @version      1.0
+// @version      1.1
 // @description  自动回复音乐磁场论坛上的隐藏帖
 // @author       zhenhappy<q505507538@gmail.com>
 // @match        https://www.hifini.com/thread-*.htm
@@ -13,6 +13,11 @@
 // @updateURL https://update.greasyfork.org/scripts/507531/%E9%9F%B3%E4%B9%90%E7%A3%81%E5%9C%BA%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E9%9A%90%E8%97%8F%E5%B8%96.meta.js
 // ==/UserScript==
 
+$(document).ready(function () {
+    reply()
+    optimizeLink()
+})
+
 function waitForElm(selector) {
     let time1, time2
     return new Promise(resolve => {
@@ -23,6 +28,7 @@ function waitForElm(selector) {
             clearInterval(time2)
         }, 3000)
         time2 = setInterval(() => {
+            console.log(selector, $(selector).length)
             if ($(selector).length > 0) {
                 resolve($(selector))
                 clearTimeout(time1)
@@ -32,7 +38,7 @@ function waitForElm(selector) {
     })
 }
 
-$(document).ready(async function () {
+async function reply() {
     const warning = await waitForElm('.alert-warning')
     if (warning) {
         const message = await waitForElm('#message')
@@ -43,7 +49,9 @@ $(document).ready(async function () {
             }, 500)
         }
     }
+}
 
+async function optimizeLink() {
     let pwd = ''
     const success = await waitForElm('.alert-success')
     if (success) {
@@ -72,4 +80,4 @@ $(document).ready(async function () {
             h5.next().next().html(newContent)
         }
     })
-})
+}
