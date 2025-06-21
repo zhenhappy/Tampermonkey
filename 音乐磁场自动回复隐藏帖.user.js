@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         音乐磁场自动回复隐藏帖
 // @namespace    https://greasyfork.org/zh-CN/scripts/507531
-// @version      1.1
+// @version      1.2
 // @description  自动回复音乐磁场论坛上的隐藏帖
 // @author       zhenhappy<q505507538@gmail.com>
 // @match        https://www.hifini.com/thread-*.htm
@@ -67,17 +67,20 @@ async function optimizeLink() {
         }
     }
 
-    $('h5').each(function () {
-        const h5 = $(this)
-        const text = h5.text().trim()
-        if (text === '下载') {
-            h5.next().remove()
-            h5.remove()
-        }
-        else if (text === '提取码') {
-            h5.text('百度网盘')
-            const newContent = `链接: <a href="${newHref}" target="_blank">${newHref}</a> 提取码: ${pwd}`
-            h5.next().next().html(newContent)
-        }
-    })
+    const downloadH5 = $('h5').filter(function () {
+        return $(this).text().trim() === '下载'
+    }).first()
+    if (downloadH5.length) {
+        downloadH5.next().remove()
+        downloadH5.remove()
+    }
+
+    const passwordH5 = $('h5').filter(function () {
+        return $(this).text().trim() === '提取码'
+    }).first()
+    if (passwordH5.length) {
+        passwordH5.text('百度网盘')
+        const newContent = `链接: <a href="${newHref}" target="_blank">${newHref}</a> 提取码: ${pwd}`
+        passwordH5.next().next().html(newContent)
+    }
 }
