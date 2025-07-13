@@ -4,7 +4,7 @@
 // @version      1.2
 // @description  自动回复音乐磁场论坛上的隐藏帖
 // @author       zhenhappy<q505507538@gmail.com>
-// @match        https://www.hifini.com/thread-*.htm
+// @match        https://*.hifiti.com/thread-*.htm
 // @icon         https://www.hifini.com/favicon.ico
 // @require      https://unpkg.com/jquery/dist/jquery.slim.min.js
 // @run-at       document-body
