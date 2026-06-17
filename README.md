@@ -11,3 +11,4 @@
 - SoBooks 自动跳转: https://greasyfork.org/zh-CN/scripts/434291
 - ApkMirror 下载优化: https://greasyfork.org/zh-CN/scripts/438409
 - A姐分享页面优化: https://greasyfork.org/en/scripts/443351
+- 小红书图文视频无水印下载: https://greasyfork.org/zh-CN/scripts/583067
