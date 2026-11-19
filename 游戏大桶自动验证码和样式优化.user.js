@@ -1,17 +1,42 @@
 // ==UserScript==
-// @name         游戏大桶自动验证码
+// @name         游戏大桶自动验证码和样式优化
 // @namespace    http://tampermonkey.net/
 // @version      1.0
-// @description  自动计算游戏大桶搜索页的加法验证码并提交
+// @description  游戏大桶搜索页自动通过加法验证码，并隐藏弹窗、调整导航等样式优化
 // @author       You
 // @match        https://www.gkinto.com/*
 // @grant        none
-// @run-at       document-idle
+// @run-at       document-start
 // ==/UserScript==
 
 (function () {
     'use strict';
 
+    // --- 样式优化（替代 Stylus） ---
+    const style = document.createElement('style');
+    style.textContent = `
+        .gamipress-daily-login-overlay,
+        .gamipress-daily-login-popup,
+        .sitetips.sitetips-default,
+        #onesignal-slidedown-container {
+            display: none !important;
+        }
+
+        .sub-menu {
+            display: block !important;
+        }
+
+        .nav-main {
+            margin-left: 25px !important;
+        }
+
+        #loginbox {
+            transform: translateY(-50%) scale(2) !important;
+        }
+    `;
+    (document.head || document.documentElement).appendChild(style);
+
+    // --- 自动验证码 ---
     function solveCaptcha() {
         const captchaDiv = document.querySelector('.erphp-search-captcha');
         if (!captchaDiv) return false;
@@ -54,13 +79,14 @@
 
     // 初次尝试
     if (!solveCaptcha()) {
-        // 如果验证码还没出现，用 MutationObserver 等待
+        // document-start 时 body 可能还没出，先等一下
+        const root = document.body || document.documentElement;
         const observer = new MutationObserver(() => {
             if (solveCaptcha()) {
                 observer.disconnect();
             }
         });
-        observer.observe(document.body, { childList: true, subtree: true });
+        observer.observe(root, { childList: true, subtree: true });
 
         // 最多等 15 秒，然后停止观察
         setTimeout(() => observer.disconnect(), 15000);
