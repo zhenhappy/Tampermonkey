@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         游戏大桶自动验证码和样式优化
-// @namespace    http://tampermonkey.net/
-// @version      1.1
+// @namespace    https://greasyfork.org/zh-CN/scripts/606205
+// @version      1.2
 // @description  游戏大桶搜索页自动通过加法验证码，并隐藏弹窗、调整导航等样式优化
 // @author       You
 // @match        https://www.gkinto.com/*
