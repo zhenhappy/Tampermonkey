@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         游戏大桶自动验证码和样式优化
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  游戏大桶搜索页自动通过加法验证码，并隐藏弹窗、调整导航等样式优化
 // @author       You
 // @match        https://www.gkinto.com/*
 // @grant        none
 // @run-at       document-start
+// @license      MIT
 // ==/UserScript==
 
 (function () {
